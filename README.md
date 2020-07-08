@@ -1,5 +1,4 @@
 <p align="center">
-  <img src="https://raw.githubusercontent.com/Bublum/GandharvaWeb19/master/EventApp/static/gandharva/images/icons/icon-512x512.png" height="148">
   <h2 align="center">Covid19 Statistics</h2>
   <p align="center">Web App giving stats of Covid19 over India<p>
 </p>
