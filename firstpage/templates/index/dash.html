@@ -1,0 +1,256 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<!-- saved from url=(0053)https://getbootstrap.com/docs/4.5/examples/dashboard/ -->
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+    <meta name="generator" content="Jekyll v4.0.1">
+    <title>Blog Template · Bootstrap</title>
+
+    <link rel="canonical" href="https://getbootstrap.com/docs/4.5/examples/blog/">
+
+    <!-- Bootstrap core CSS -->
+    {#    <link href="/docs/4.5/dist/css/bootstrap.min.css" rel="stylesheet"#}
+    {#          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">#}
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+          integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <!-- Favicons -->
+    <meta name="msapplication-config" content="/docs/4.5/assets/img/favicons/browserconfig.xml">
+    <meta name="theme-color" content="#563d7c">
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+            integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+            crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"
+            integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo"
+            crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"
+            integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI"
+            crossorigin="anonymous"></script>
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900" rel="stylesheet">
+    <!-- Custom styles for this template -->
+</head>
+<body>
+<section class="container">
+
+    <div class="nav-scroller py-1 mb-2">
+        <nav class="nav d-flex justify-content-between">
+        </nav>
+    </div>
+    <div class="jumbotron p-0 p-md-2 text-white  ">
+        <img src="{% static 'index/images/banner2.png' %}" class="rounded mx-auto d-block" alt="..."
+             style="resize: horizontal">
+    </div>
+    <section class="text-center">
+        <p>
+            <button type="button" class="btn btn-primary" data-toggle="collapse" href="#MyDiv"
+                    aria-expanded="true" aria-controls="MyDiv">Covid-19
+                Statistics
+            </button>
+        </p>
+    </section>
+    <div id="MyDiv" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <h2>Overall Positive Cases</h2>
+                    </div>
+
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <canvas id="OverallChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <h2>Cases per State</h2>
+                    </div>
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <canvas id="StateChart" width="400" height="400"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row mb-2">
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <canvas id="DistChart" width="400" height="400"></canvas>
+                    </div>
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <h2>Cases per City</h2>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row no-gutters border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <canvas id="LocalityChart" width="400" height="400"></canvas>
+                    </div>
+                    <div class="row p-4 d-flex flex-column position-static">
+                        <h2>Cases in Pune</h2>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <section class="text-center">
+        <p>
+            <a href="{% url 'death_stat' %}" class="btn btn-primary">COVID-Death Toll</a>
+        </p>
+    </section>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script>
+        var date = [{% for item in dates %}
+            "{{item}}",
+        {% endfor %}];
+        var over_case = [{% for item in over_cases %}
+            "{{item}}",
+        {% endfor %}];
+        var otx = document.getElementById('OverallChart').getContext('2d');
+        var MyNewChart = null;
+        $('#MyDiv').on('shown.bs.collapse', function () {
+            setTimeout(function () {
+                if (MyNewChart == null)
+                    var LocalityChart = new Chart(otx, {
+                        // The type of chart we want to create
+                        type: 'bar',
+
+                        // The data for our dataset
+                        data: {
+                            labels: date,
+                            datasets: [{
+                                label: 'Cases',
+                                backgroundColor: 'rgb(17, 146, 232)',
+                                borderColor: 'rgb(17, 146, 232)',
+                                data: over_case
+                            }]
+                        },
+                        // Configuration options go here
+                        options: {}
+                    });
+            }, 50);
+        });
+    </script>
+    <script>
+        var state = [{% for item in states %}
+            "{{item}}",
+        {% endfor %}];
+        var st_case = [{% for item in st_cases %}
+            "{{item}}",
+        {% endfor %}];
+        var stx = document.getElementById('StateChart').getContext('2d');
+        var MyNewChart = null;
+        $('#MyDiv').on('shown.bs.collapse', function () {
+            setTimeout(function () {
+                if (MyNewChart == null)
+                    var LocalityChart = new Chart(stx, {
+                        // The type of chart we want to create
+                        type: 'bar',
+
+                        // The data for our dataset
+                        data: {
+                            labels: state,
+                            datasets: [{
+                                label: 'Cases',
+                                backgroundColor: 'rgb(17, 146, 232)',
+                                borderColor: 'rgb(17, 146, 232)',
+                                data: st_case
+                            }]
+                        },
+                        // Configuration options go here
+                        options: {}
+                    });
+            }, 50);
+        });
+    </script>
+    <script>
+        var dist = [{% for item in dists %}
+            "{{item}}",
+        {% endfor %}];
+        var dt_case = [{% for item in dt_cases %}
+            "{{item}}",
+        {% endfor %}];
+        var dtx = document.getElementById('DistChart').getContext('2d');
+        var MyNewChart = null;
+        $('#MyDiv').on('shown.bs.collapse', function () {
+            setTimeout(function () {
+                if (MyNewChart == null)
+                    var DistChart = new Chart(dtx, {
+                        // The type of chart we want to create
+                        type: 'bar',
+
+                        // The data for our dataset
+                        data: {
+                            labels: dist,
+                            datasets: [{
+                                label: 'Cases',
+                                backgroundColor: 'rgb(17, 146, 232)',
+                                borderColor: 'rgb(17, 146, 232)',
+                                data: dt_case
+                            }]
+                        },
+                        // Configuration options go here
+                        options: {}
+                    });
+            }, 50);
+        });
+
+    </script>
+    <script>
+        var p_date = [{% for item in p_dates %}
+            "{{item}}",
+        {% endfor %}];
+        var p_case = [{% for item in p_cases %}
+            "{{item}}",
+        {% endfor %}];
+        var ptx = document.getElementById('LocalityChart').getContext('2d');
+        var MyNewChart = null;
+        $('#MyDiv').on('shown.bs.collapse', function () {
+            setTimeout(function () {
+                if (MyNewChart == null)
+                    var LocalityChart = new Chart(ptx, {
+                        // The type of chart we want to create
+                        type: 'bar',
+
+                        // The data for our dataset
+                        data: {
+                            labels: p_date,
+                            datasets: [{
+                                label: 'Cases',
+                                backgroundColor: 'rgb(17, 146, 232)',
+                                borderColor: 'rgb(17, 146, 232)',
+                                data: p_case
+                            }]
+                        },
+                        // Configuration options go here
+                        options: {}
+                    });
+            }, 50);
+        });
+    </script>
+</section>
+</body>
+</html>
